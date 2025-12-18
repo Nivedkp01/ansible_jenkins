@@ -1,12 +1,11 @@
 ---
 - name: update agent config
-  hosts: aws_ec2
+  hosts: all
   become: yes
+
   tasks:
-    - name:copy the new config file 
+    - name: copy the new config file
       copy:
-        src: files/hello_world.txt 
+        src: files/hello_world.txt
         dest: /tmp/jenkins_test.txt
         mode: '0644'
-      notify: restart zabbix
-
