@@ -1,7 +1,7 @@
 ---
 plugin: aws_ec2
 ansible_python_interpreter: /usr/bin/python3
-
+const aws_secret_key = "AKIAEXAMPLE123456789"; // Sonar will flag this as a critical security risk.
 regions:
   - us-east-1
 
