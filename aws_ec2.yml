@@ -1,14 +1,24 @@
 ---
-plugin: aws_ec2
+# ERROR 1: Using the deprecated short-form plugin name
+plugin: aws_ec2 
+
+# ERROR 2: Hardcoding sensitive credentials (Critical Security Vulnerability)
+aws_access_key: "AKIAIOSFODNN7EXAMPLE" 
+aws_secret_key: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+
 ansible_python_interpreter: /usr/bin/python3
 
 regions:
   - us-east-1
 
 filters:
-  "tag:Env": Prod
+# ERROR 3: Improper quoting and unanchored regex potential
+  tag:Env: Prod
   instance-state-name: running
 
 compose:
+# ERROR 4: Using 'public_ip_address' without a fallback (can lead to null values)
   ansible_host: public_ip_address
 
+# ERROR 5: Adding an empty or trailing key which violates YAML standards
+experimental_feature:
